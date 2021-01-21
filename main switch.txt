@@ -1,0 +1,140 @@
+
+	public static void main(String [] agrs) throws SQLException, ParseException {
+		Scanner sc = new Scanner(System.in);
+		Scanner sc1 = new Scanner (System.in);
+		int choice;
+	
+ 	
+		StudentDAO sdao = new StudentDAOImpl();
+		
+		
+		
+		
+		
+
+		do {
+			
+			System.out.println("\r\n" + 
+					"1.insert\r\n" + 
+					"2.read\r\n" + 
+					"3.update\r\n" + 
+					"4.delete\r\n"
+					+"5.exit\r\n");
+			
+			choice= sc.nextInt();
+			switch(choice) {
+			
+			case 1:
+			{
+				System.out.println("enter student details");
+				
+				Student student = new Student();
+				
+				  System.out.println("enter Id");
+			         
+				int id = sc.nextInt();
+				
+		       
+				student.setId(id);
+				
+				System.out.println("enter student name ");
+				 String name= sc1.nextLine();
+				student.setName(name);
+				 System.out.println("enter student marks");
+				  Float marks= sc.nextFloat();
+				  student.setMarks((float)marks);
+				  
+				  sdao.create(student);
+				  
+				  break;
+				  
+			}
+			
+			case 2 :{
+				
+				
+				System.out.println("1.read all records\r\n" +
+				" 2.read one record using id \r\n");
+				int readchoice=sc.nextInt();
+				
+				switch(readchoice) {
+				
+				case 1: {
+					   
+					List<Student> result = sdao.read();
+					
+					for(Student r:result) {
+						
+						System.out.printf("%d,%s,%s \n",r.getId(),r.getName() ,r.getMarks());
+					}
+					break;
+				}
+				
+				case 2: {
+					
+					System.out.println("enter the id of student");
+					int id = sc.nextInt(); 
+					
+					Student rs = sdao.read(id);
+					
+					System.out.printf("%d,%s,%f \n",rs.getId(),rs.getName(),rs.getMarks());
+					break;
+				}
+			
+			}
+				break;
+			}
+				case 3:{
+					
+					
+					Student student = new Student();
+					System.out.println("enter student details for update");
+					
+					
+					
+				
+					
+			        
+					
+					System.out.println("enter student name ");
+					 String name= sc1.nextLine();
+					student.setName(name);
+					 System.out.println("enter student marks");
+					  Float marks= sc.nextFloat();
+					  student.setMarks((float)marks);
+					  
+					  System.out.println("enter Id where the update should happen");
+					  int id = sc.nextInt();
+						student.setId(id);
+					  
+					  int rs = sdao.update(student);
+					  
+					  System.out.println(rs+"rows updated ");
+					 break;
+					 
+				}
+				
+				case 4:{
+					
+					System.out.println("enter id to be deleted ");
+					int id = sc.nextInt();
+					
+					sdao.delete(id);
+					break;
+			}
+				
+				case 5: 
+				{
+					System.out.println("exited from program");
+					break;
+				}
+				
+				
+		}
+		
+	
+		
+
+		}while(choice!=5);
+	
+}

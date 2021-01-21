@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+	<!--  <script>
+		function fn1(){
+			const content = this.document.getElementById("content");
+			 html2pdf().from(content).set(opt).save();
+		}
+	</script>
+	
+	<style>
+		padding: 10px 20px;
+	</style>
+ -->
+ <script>
+		window.onload= function(){
+		 document.getElementById("download").addEventListener("click", () =>{
+            const content = this.document.getElementById("content");
+            	console.log(content);
+            	console.log(window);
+               var opt = {
+                margin: 1,
+                filename: 'myFile.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().from(content).set(opt).save();
+        })
+	}		 
+		
+</script>
+
+	
+		
+		 
+		
+</script>
+</head>
+<body>
+		 
+		 <p id="demo"></p>
+		
+		<div id="content"> demo</div>
+		<!-- <button onclick="fn1()"> download</button> -->
+		<button class="btn-btn-primary" id="download"> download</button>
+		
+
+
+		
+</body>
+</html>
